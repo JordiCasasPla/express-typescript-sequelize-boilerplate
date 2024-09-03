@@ -10,6 +10,7 @@ try {
     })
     .catch((err: Error) => {
       logger.error("Failed to initialize database:", err);
+      console.log("Failed to initialize database:", err);
       if (server) {
         server.close();
       }
