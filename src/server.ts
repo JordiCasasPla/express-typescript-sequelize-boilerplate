@@ -16,7 +16,7 @@ import {
   errorHandler as middErrorHandler,
 } from "./middlewares/error";
 import routes from "./routes/v1";
-
+import { initModels } from "./models";
 class Server {
   public app: express.Application;
   constructor() {
@@ -26,6 +26,7 @@ class Server {
     this.health();
     this.errorHandling();
     this.initDatabase();
+    this.initModels();
   }
 
   config() {
@@ -76,6 +77,15 @@ class Server {
         .catch((err: Error) => console.log(err));
     } catch (error) {
       logger.error("Error syncing database:", error);
+      throw error;
+    }
+  }
+
+  async initModels () {
+    try {
+      initModels(db);
+    } catch (error) {
+      logger.error("Error initializing models:", error);
       throw error;
     }
   }

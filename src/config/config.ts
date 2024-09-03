@@ -18,6 +18,7 @@ export const validateEnv = [
   check("DB_DIALECT").notEmpty().withMessage("DB_DIALECT is required"),
   check("DB_PASSWORD").notEmpty().withMessage("DB_PASSWORD is required"),
   check("DB_PORT").isInt().withMessage("DB_PORT must be a number"),
+  check("JWT_SECRET").notEmpty().withMessage("JWT_SECRET is required"),
 ];
 
 export const validateConfig = (
@@ -48,4 +49,7 @@ export const config = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
   },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  }
 };
