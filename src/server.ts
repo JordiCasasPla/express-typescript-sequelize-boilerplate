@@ -10,13 +10,14 @@ import { successHandler, errorHandler } from "./config/morgan";
 import db from "./config/sequelize";
 import { ApiError } from "./errors";
 import { logger } from "./config/logger";
-import { config } from "./config/config";
+import { config, validateConfig, validateEnv } from "./config/config";
 import {
   errorConverter,
   errorHandler as middErrorHandler,
 } from "./middlewares/error";
 import routes from "./routes/v1";
 import { initModels } from "./models";
+
 class Server {
   public app: express.Application;
   constructor() {
@@ -40,6 +41,7 @@ class Server {
     this.app.use(compression());
     this.app.use(cors({ origin: "*" }));
     this.app.options("*", cors());
+    // this.app.use(validateEnv, validateConfig);
     this.client();
   }
 

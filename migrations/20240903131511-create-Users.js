@@ -2,7 +2,7 @@ const DataTypes = require('sequelize').DataTypes
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Auths', {
+    await queryInterface.createTable('Users', {
       id: {
         type: DataTypes.INTEGER.UNSIGNED,
         field: 'id',
@@ -10,30 +10,36 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      token: {
+      name: {
         type: DataTypes.STRING,
-        field: 'token',
-        allowNull: false
+        field: 'name'
       },
-      userId: {
+      lastName: {
         type: DataTypes.STRING,
-        field: 'userId',
-        allowNull: false
+        field: 'lastName'
       },
-      type: {
-        type: DataTypes.ENUM('refresh', 'resetPassword', 'verifyEmail'),
-        field: 'type',
-        allowNull: false
+      email: {
+        type: DataTypes.STRING,
+        field: 'email',
+        unique: true
       },
-      expires: {
-        type: DataTypes.DATEONLY,
-        field: 'expires',
-        allowNull: false
+      password: {
+        type: DataTypes.STRING,
+        field: 'password'
       },
-      blacklisted: {
+      confirmed: {
         type: DataTypes.BOOLEAN,
-        field: 'blacklisted',
+        field: 'confirmed',
         defaultValue: false
+      },
+      blocked: {
+        type: DataTypes.BOOLEAN,
+        field: 'blocked',
+        defaultValue: false
+      },
+      role: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        field: 'role_id'
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -42,10 +48,14 @@ module.exports = {
       updatedAt: {
         type: DataTypes.DATE,
         field: 'updatedAt'
+      },
+      deletedAt: {
+        type: DataTypes.DATE,
+        field: 'deletedAt'
       }
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Auths');
+    await queryInterface.dropTable('Users');
   },
 };

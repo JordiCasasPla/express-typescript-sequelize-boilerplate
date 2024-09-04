@@ -1,12 +1,17 @@
 import { Router } from "express";
 import userRouter from "./user.routes";
+import authRouter from "./auth.routes";
 
 const router = Router();
 
 const defaultRoutes = [
   {
-    path: "/api/users",
+    path: "/v1/api/users",
     route: userRouter,
+  },
+  {
+    path: "/v1/api/auth",
+    route: authRouter,
   },
 ];
 

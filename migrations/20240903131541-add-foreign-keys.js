@@ -3,7 +3,7 @@ const DataTypes = require('sequelize').DataTypes
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addConstraint('Users', {
-      fields: ['role'],
+      fields: ['role_id'],
       type: 'foreign key',
       name: 'Users_role_fkey',
       references: {
@@ -13,7 +13,7 @@ module.exports = {
     })
     
     await queryInterface.addConstraint('Auths', {
-      fields: ['userId'],
+      fields: ['user_id'],
       type: 'foreign key',
       name: 'Auths_userId_fkey',
       references: {
