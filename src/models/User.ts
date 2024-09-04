@@ -37,7 +37,7 @@ export class User extends Model<
   declare password: string | null
   declare confirmed: boolean | null
   declare blocked: boolean | null
-  declare role: number | null
+  declare role_id: number | null
   declare createdAt: CreationOptional<Date>
   declare updatedAt: CreationOptional<Date>
   declare deletedAt: CreationOptional<Date>
@@ -95,7 +95,7 @@ export class User extends Model<
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
-      role: {
+      role_id: {
         type: DataTypes.INTEGER.UNSIGNED
       },
       createdAt: {

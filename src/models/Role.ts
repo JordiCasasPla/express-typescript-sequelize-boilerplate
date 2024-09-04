@@ -40,7 +40,7 @@ export class Role extends Model<
   declare setUsers: HasManySetAssociationsMixin<User, number>
   declare addUser: HasManyAddAssociationMixin<User, number>
   declare addUsers: HasManyAddAssociationsMixin<User, number>
-  declare createUser: HasManyCreateAssociationMixin<User, 'role'>
+  declare createUser: HasManyCreateAssociationMixin<User>
   declare removeUser: HasManyRemoveAssociationMixin<User, number>
   declare removeUsers: HasManyRemoveAssociationsMixin<User, number>
   declare hasUser: HasManyHasAssociationMixin<User, number>
