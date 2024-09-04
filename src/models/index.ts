@@ -16,19 +16,19 @@ export function initModels(sequelize: Sequelize) {
 
   User.belongsTo(Role, {
     as: 'role',
-    foreignKey: 'role'
+    foreignKey: 'role_id'
   })
   User.hasMany(Auth, {
     as: 'tokens',
-    foreignKey: 'userId'
+    foreignKey: 'user_id'
   })
   Auth.belongsTo(User, {
     as: 'user',
-    foreignKey: 'userId'
+    foreignKey: 'user_id'
   })
   Role.hasMany(User, {
     as: 'users',
-    foreignKey: 'role'
+    foreignKey: 'role_id'
   })
 
   return {
