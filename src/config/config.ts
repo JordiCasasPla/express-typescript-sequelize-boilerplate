@@ -19,6 +19,10 @@ export const validateEnv = [
   check("DB_PASSWORD").notEmpty().withMessage("DB_PASSWORD is required"),
   check("DB_PORT").isInt().withMessage("DB_PORT must be a number"),
   check("JWT_SECRET").notEmpty().withMessage("JWT_SECRET is required"),
+  check("JWT_EXPIRATION").notEmpty().withMessage("JWT_EXPIRATION is required"),
+  check("JWT_REFRESH_EXPIRATION")
+    .notEmpty()
+    .withMessage("JWT_REFRESH_EXPIRATION is required"),
 ];
 
 export const validateConfig = (
@@ -51,5 +55,7 @@ export const config = {
   },
   jwt: {
     secret: process.env.JWT_SECRET,
-  }
+    refreshExpirationDays: process.env.JWT_REFRESH_EXPIRES_IN,
+    accessExpirationMinutes: process.env.JWT_EXPIRES_IN,
+  },
 };
