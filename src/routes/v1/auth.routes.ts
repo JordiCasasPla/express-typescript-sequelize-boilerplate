@@ -1,12 +1,18 @@
 import { Router } from "express";
 import { authController } from "../../controllers";
+import { userValidations, validationMiddleware } from "../../validations";
 
 const router = Router();
 
 router
-  .post("/login", authController.login)
-  .post("/register", authController.register)
-  .post("/logout", authController.logout)
-  .post("/refresh-tokens", authController.refreshTokens);
-
+  .post(
+    "/login",
+    validationMiddleware(userValidations.validationRules[userValidations.METHODS.LOGIN]),
+    authController.login
+  )
+  .post(
+    "/register",
+    validationMiddleware(userValidations.validationRules[userValidations.METHODS.CREATE]),
+    authController.register
+  )
 export default router;
