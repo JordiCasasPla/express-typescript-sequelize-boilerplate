@@ -16,12 +16,13 @@ const loginUserWithEmailAndPassword = async (
   password: string
 ) => {
   const user = await userService.getUserByEmail(email);
-  if (
-    !user ||
-    !password ||
-    !user.password ||
-    !compare(password, user.password)
-  ) {
+  if (!user || !password || !user.password) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+  }
+
+  const isPasswordMatch = await compare(password, user.password);
+
+  if (!isPasswordMatch) {
     throw new ApiError(httpStatus.UNAUTHORIZED, "Incorrect email or password");
   }
   return user;
