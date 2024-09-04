@@ -20,8 +20,9 @@ const getAllUsers = async () => {
 };
 
 const getUserByEmail = async (email: string) => {
-  return User.findOne({ where: { email } });
+  return User.scope('withPassword').findOne({ where: { email } });
 };
+
 
 /**
  * create a new user in the database
